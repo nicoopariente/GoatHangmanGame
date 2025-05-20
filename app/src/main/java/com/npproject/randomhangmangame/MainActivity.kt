@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navigationController, startDestination = "menu", modifier = Modifier.padding(innerPadding)){
                         composable("menu"){ Menu(navigateToGame = {word -> navigationController.navigate(route = "game/$word")}) }
                         composable("game/{word}", arguments = listOf(navArgument("word"){type = NavType.StringType})){
-                            backStackEntry -> Game(backStackEntry.arguments?.getString("word")!!)
+                            backStackEntry -> Game(backStackEntry.arguments?.getString("word")!!, navigateToGame = {navigationController.navigate(route = "menu")})
                              }
                     }
                 }
